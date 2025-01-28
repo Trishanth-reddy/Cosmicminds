@@ -119,40 +119,44 @@
     </section>
 
     <!-- Sign Up Modal -->
-    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true" >
-        <div class="modal-dialog">
-            <div class="modal-content card">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
-                    <button type="button" class="btn-close closing" data-bs-dismiss="modal " aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Sign up using one of the following options:</p>
-                    <!-- Google Sign Up Button -->
-                    <button onclick="googleSignIn()" class="btn btn-primary w-100 mb-3">
-                        <i class="fab fa-google"></i> Sign Up with Google
-                    </button>
-                    <!-- Or, Sign Up Manually -->
-                    <hr>
-                    <form>
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Sign Up</button>
-                    </form>
-                </div>
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+                <!-- Styled Close Button -->
+                <button type="button" class="btn-close closing" data-bs-dismiss="modal" aria-label="Close" style="color: white; background: none; border: none; font-size: 1.5rem;">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Sign up using one of the following options:</p>
+                <!-- Google Sign Up Button -->
+                <button onclick="googleSignIn()" class="btn btn-primary w-100 mb-3">
+                    <i class="fab fa-google"></i> Sign Up with Google
+                </button>
+                <!-- Or, Sign Up Manually -->
+                <hr>
+                <form>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
+
 
     <!-- Scripts -->
     <script src="script.js" type="module"></script> 
