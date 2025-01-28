@@ -20,12 +20,285 @@
   <title>Cosmic Mind Quiz</title>
   <link rel="stylesheet" href="quiz start.css">
   <link rel="stylesheet" href="navbar.css">
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🚀</text></svg>") 16 0, auto;
+    }
 
+    a:hover, button:hover {
+        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>☄️</text></svg>") 16 0, auto;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(0deg, rgba(43, 25, 57, 1) 0%, rgba(83, 26, 126, 1) 50%, rgba(43, 25, 57, 1) 100%);
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        text-align: center;
+        padding: 20px;
+        position: relative;
+    }
+
+    .exit-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background: #8b3dff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        transition: background 0.3s;
+    }
+
+    .exit-btn:hover {
+        background: #9d5fff;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 80vh;
+    }
+
+    #quiz-container {
+        width: 80%;
+        max-width: 600px;
+        background: #1e1e2f;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    #progress-container {
+        width: 100%;
+        height: 10px;
+        background: #333;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    #progress-bar {
+        width: 0%;
+        height: 100%;
+        background: #5a5ad4;
+        transition: width 0.4s ease;
+    }
+
+    #question {
+        font-size: 1.2em;
+    }
+
+    #answers {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    #answers li {
+        background: #2a2a4a;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    #answers li:hover {
+        background: #5a5ad4;
+    }
+
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:disabled {
+        background: gray;
+        cursor: not-allowed;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    #result-container {
+        text-align: center;
+    }
+      
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(0deg, rgba(43, 25, 57, 1) 0%, rgba(83, 26, 126, 1) 50%, rgba(43, 25, 57, 1) 100%);
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        text-align: center;
+        padding: 20px;
+        position: relative;
+    }
+
+    .exit-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background: #8b3dff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        transition: background 0.3s;
+    }
+
+    .exit-btn:hover {
+        background: #9d5fff;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 80vh;
+        padding: 0 20px;  /* Added padding to ensure spacing on small screens */
+    }
+
+    #quiz-container {
+        width: 100%;  /* Changed width to 100% for responsiveness */
+        max-width: 600px;
+        background: #1e1e2f;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    #progress-container {
+        width: 100%;
+        height: 10px;
+        background: #333;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    #progress-bar {
+        width: 0%;
+        height: 100%;
+        background: #5a5ad4;
+        transition: width 0.4s ease;
+    }
+
+    #question {
+        font-size: 1.2em;
+    }
+
+    #answers {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    #answers li {
+        background: #2a2a4a;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    #answers li:hover {
+        background: #5a5ad4;
+    }
+
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:disabled {
+        background: gray;
+        cursor: not-allowed;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    #result-container {
+        text-align: center;
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+        body {
+            padding: 10px; /* Reduce body padding */
+        }
+
+        .exit-btn {
+            top: 10px;
+            right: 10px;
+            padding: 8px 16px;
+        }
+
+        #quiz-container {
+            padding: 15px;
+        }
+
+        #question {
+            font-size: 1.1em; /* Slightly reduce font size */
+        }
+
+        button {
+            padding: 8px 16px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        main {
+            height: auto;
+            padding: 10px; /* Reduce padding even more */
+        }
+
+        .exit-btn {
+            top: 5px;
+            right: 5px;
+            padding: 6px 12px;
+        }
+
+        #quiz-container {
+            padding: 10px;
+        }
+
+        #question {
+            font-size: 1em; /* Further reduce font size */
+        }
+
+        button {
+            padding: 8px 14px; /* Reduce button padding */
+        }
+    }
+</style>
 </head>
 <body>
   <header>
+    <button class="exit-btn" onclick="window.location.href='quiz start.html'">Exit Quiz</button>
     <h1>Cosmic Mind Quiz</h1>
-  </header>
+</header>
   <main>
     <div id="quiz-container">
       <div id="progress-container">
