@@ -1,0 +1,91 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Video container */
+  .video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+  }
+  
+  /* Background video */
+  .background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire area proportionally */
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Overlay content */
+  .overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    padding: 1rem;
+  }
+  
+  .overlay-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  }
+  
+  .overlay-content button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .overlay-content button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  /* Responsive Styles */
+  
+  /* Small devices (phones, <768px) */
+  @media (max-width: 768px) {
+    .overlay-content h1 {
+      font-size: 2rem;
+    }
+  
+    .overlay-content button {
+      font-size: 0.9rem;
+      padding: 0.7rem 1.2rem;
+    }
+  }
+  
+  /* Extra small devices (phones, <480px) */
+  @media (max-width: 480px) {
+    .overlay-content h1 {
+      font-size: 1.5rem;
+    }
+  
+    .overlay-content button {
+      font-size: 0.8rem;
+      padding: 0.6rem 1rem;
+    }
+  }
+  

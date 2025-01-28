@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2EF7FZMR2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Z2EF7FZMR2');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System Explorer - Course Content</title>
+    <!-- Stylesheets -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Fonts (Poppins) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="knowmore.css">
+    
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <span class="me-2">🚀</span>
+                <span>Cosmic Minds</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cources.html">Courses</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Resources
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="Planets.html">Cosmic Circuit</a></li>
+                            <li><a class="dropdown-item" href="Cosmic Impact.html">Cosmic Impact</a></li>
+                            <li><a class="dropdown-item" href="quiz start.html">Cosmic Challenge</a></li>
+                            <li><a class="dropdown-item" href="news.html">Cosmic Star Gazette</a></li>
+                            <li><a class="dropdown-item" href="CosmicBot.html">CosmicBot</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="header">
+            <div class="course-icon">
+                <i class="fas fa-atom"></i>
+            </div>
+            <h1>Space Physics</h1>
+            <div class="tags">
+                <span class="tag">Advanced</span>
+                <span class="tag">13-15 years</span>
+            </div>
+            <p>Introduction to astronomy and telescope observations</p>
+        </div>
+    
+        <div class="course-content">
+            <!-- Module 1 -->
+            <div class="module">
+                <button class="module-header collapsed" data-bs-toggle="collapse" data-bs-target="#module1Content">
+                    <div>
+                        <h3>Module 1: Newtonian Mechanics</h3>
+                        <div class="progress-indicator">4 chapters • 50 mins</div>
+                    </div>
+                    <span class="arrow-icon">▼</span>
+                </button>
+                <div id="module1Content" class="collapse module-content">
+                    <div class="chapter" onclick="startChapter('1.1')">
+                        <h4>Chapter 1: Laws of Motion</h4>
+                        <p>Understand the principles of Newton's laws</p>
+                    </div>
+                    <div class="chapter" onclick="startChapter('1.2')">
+                        <h4>Chapter 2: Forces in Space</h4>
+                        <p>Learn about forces acting on spacecraft</p>
+                    </div>
+                    <div class="chapter" onclick="startChapter('1.3')">
+                        <h4>Chapter 3: Gravity and Inertia</h4>
+                        <p>Explore the effects of gravity in space travel</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Module 2 -->
+            <div class="module">
+                <button class="module-header collapsed" data-bs-toggle="collapse" data-bs-target="#module2Content">
+                    <div>
+                        <h3>Module 2: Orbital Dynamics</h3>
+                        <div class="progress-indicator">6 chapters • 75 mins</div>
+                    </div>
+                    <span class="arrow-icon">▼</span>
+                </button>
+                <div id="module2Content" class="collapse module-content">
+                    <div class="chapter" onclick="startChapter('2.1')">
+                        <h4>Chapter 1: Basics of Orbits</h4>
+                        <p>Learn how spacecraft maintain orbits</p>
+                    </div>
+                    <div class="chapter" onclick="startChapter('2.2')">
+                        <h4>Chapter 2: Transfer Orbits</h4>
+                        <p>Understand how to transition between orbits</p>
+                    </div>
+                    <div class="chapter" onclick="startChapter('2.3')">
+                        <h4>Chapter 3: Gravitational Assists</h4>
+                        <p>Discover how gravity boosts spacecraft speed</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Module 3 -->
+            <div class="module">
+                <button class="module-header collapsed" data-bs-toggle="collapse" data-bs-target="#module3Content">
+                    <div>
+                        <h3>Module 3: Propulsion Systems</h3>
+                        <div class="progress-indicator">5 chapters • 60 mins</div>
+                    </div>
+                    <span class="arrow-icon">▼</span>
+                </button>
+                <div id="module3Content" class="collapse module-content">
+                    <div class="chapter" onclick="startChapter('3.1')">
+                        <h4>Chapter 1: Rocket Engines</h4>
+                        <p>Explore the working of chemical rockets</p>
+                    </div>
+                    <div class="chapter" onclick="startChapter('3.2')">
+                        <h4>Chapter 2: Ion Propulsion</h4>
+                        <p>Learn about advanced propulsion technologies</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="features">
+            <div class="feature">
+                <i>🚀</i>
+                <h3>Newtonian Mechanics</h3>
+            </div>
+            <div class="feature">
+                <i>🌌</i>
+                <h3>Orbital Dynamics</h3>
+            </div>
+            <div class="feature">
+                <i>🛠️</i>
+                <h3>Propulsion Systems</h3>
+            </div>
+            <div class="feature">
+                <i>✨</i>
+                <h3>Gravitational Physics</h3>
+            </div>
+        </div>
+    </div>
+    
+
+        <div class="center">
+            <button class="button" onclick="startCourse()">Start Learning - ₹8000</button>
+        </div>
+        <div class="navigation-buttons">
+            <button class="nav-button" onclick="window.location.href='Knowmore2.html';" id="prevButton">
+                ← Previous Page
+            </button>
+            <button class="nav-button" onclick="window.location.href='Knowmore4.html';" id="nextButton">
+                Next Page →
+            </button>
+        </div>
+
+    </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function startChapter(chapterId) {
+            console.log(`Starting chapter: ${chapterId}`);
+            alert(`Loading chapter ${chapterId}...`);
+            // Add your navigation logic here
+        }
+
+        function startCourse() {
+            console.log('Starting course enrollment process');
+            alert('Proceeding to enrollment...');
+            // Add your enrollment logic here
+        }
+        // Added navigation functions
+        function previousPage() {
+            // Add your navigation logic here
+            window.history.back();
+        }
+
+        function nextPage() {
+            // Add your navigation logic here
+            // This should navigate to the next logical page in your site structure
+            alert('Navigating to next page...');
+        }
+
+        // Navbar hide/show on scroll
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const navbar = document.querySelector('.navbar');
+
+            if (currentScroll > lastScroll) {
+                navbar.classList.add('hidden');
+            } else {
+                navbar.classList.remove('hidden');
+            }
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercury - The Swift Planet</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/loaders/GLTFLoader.js"></script> <!-- Added GLTFLoader -->
+    <style>
+        :root {
+            --primary-purple: #2d1b3e;
+            --secondary-purple: #6b4984;
+            --light-purple: #9a7aa0;
+            --accent-purple: #e0c1f4;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background-color: rgba(45, 27, 62, 0.9) !important;
+        }
+
+        .nav-link {
+            color: var(--accent-purple) !important;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #fff !important;
+        }
+
+        #canvas-container {
+            height: 400px;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .info-card {
+            background-color: rgba(45, 27, 62, 0.8);
+            border: 1px solid var(--light-purple);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .next-btn {
+            background-color: var(--secondary-purple);
+            color: white;
+            border: 2px solid var(--accent-purple);
+            padding: 10px 30px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .next-btn:hover {
+            background-color: var(--accent-purple);
+            color: var(--primary-purple);
+            transform: translateX(10px);
+        }
+
+        .social-icons a {
+            color: var(--accent-purple);
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #fff;
+        }
+
+        h1, h2, h3 {
+            color: var(--accent-purple);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Mercury</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#overview">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#facts">Facts</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="container mt-5 pt-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 mb-4">Mercury</h1>
+                <p class="lead">The smallest and innermost planet in the Solar System, Mercury is a world of extremes and fascinating contradictions.</p>
+            </div>
+            <div class="col-lg-6">
+                <div id="canvas-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Sections -->
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="info-card">
+                    <h3>Physical Features</h3>
+                    <p>Mercury's surface is heavily cratered, similar to Earth's Moon. It has extensive plains and steep cliffs, some as high as 2 kilometers.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-card">
+                    <h3>Orbit & Rotation</h3>
+                    <p>Mercury completes one orbit around the Sun every 88 Earth days, making it the fastest planet in our solar system.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-card">
+                    <h3>Temperature</h3>
+                    <p>Surface temperatures range from a scorching 800°F (427°C) during the day to -290°F (-179°C) at night.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="container-fluid py-4 text-center">
+        <button class="next-btn mb-3">Next Planet →</button>
+        <div class="social-icons">
+            <a href="#"><i class="fas fa-share-alt"></i></a>
+            <a href="#"><i class="fas fa-info-circle"></i></a>
+            <a href="#"><i class="fas fa-star"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+    <script>
+        // Three.js Setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        const container = document.getElementById('canvas-container');
+        renderer.setSize(container.offsetWidth, container.offsetHeight);
+        container.appendChild(renderer.domElement);
+
+        // GLTFLoader for Mercury model
+        const loader = new THREE.GLTFLoader();
+        loader.load('3d/Mercury_1_4878.glb', function(gltf) {
+            const mercury = gltf.scene;
+            scene.add(mercury);
+        }, undefined, function(error) {
+            console.error('An error occurred while loading the Mercury model:', error);
+        });
+
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+
+        const pointLight = new THREE.PointLight(0xffffff, 1);
+        pointLight.position.set(10, 10, 10);
+        scene.add(pointLight);
+
+        camera.position.z = 10;
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Responsive canvas
+        window.addEventListener('resize', () => {
+            camera.aspect = container.offsetWidth / container.offsetHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.offsetWidth, container.offsetHeight);
+        });
+    </script>
+</body>
+</html>

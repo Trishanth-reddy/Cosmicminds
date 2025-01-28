@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Chatbot</title>
+    <link rel="stylesheet" href="style.css">
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a2e;
+    color: #fff;
+    text-align: center;
+}
+#chatbot {
+    max-width: 600px;
+    margin: 50px auto;
+    border: 2px solid #0f3460;
+    padding: 20px;
+    background-color: #162447;
+    border-radius: 10px;
+}
+#chat-output {
+    height: 300px;
+    overflow-y: auto;
+    background-color: #1b1b2f;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+#chat-input-area {
+    display: flex;
+}
+#chat-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+}
+#send-btn {
+    background-color: #e43f5a;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+</style>
+</head>
+<body>
+    <div id="chatbot">
+        <div id="chat-output"></div>
+        <div id="chat-input-area">
+            <input id="chat-input" type="text" placeholder="Ask me about the Sun, Mars, or a NASA image!">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+    <script src="chatbot.js"></script>
+</body>
+<script>
+// Fetch NASA APOD data
+const fetchNASAData = async () => {
+    try {
+        const apiKey = "GfvApEEsNKBsQ6UUBsqJIH3FbsYW3sqmbTUqVr9m"; // Replace with your API key
+        const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}`);
+        if (!response.ok) throw new Error("Failed to fetch NASA data");
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+};
+
+// Predefined responses
+const responses = {
+    "what is the sun": "The Sun is a star at the center of our solar system.",
+    "tell me about mars": "Mars is the fourth planet from the Sun, known as the Red Planet.",
+    "what is a black hole": "A black hole is a region of space where gravity is so strong that nothing, not even light, can escape.",
+    "what is a galaxy": "A galaxy is a massive system of stars, planets, gas, and dark matter bound together by gravity.",
+    "how many planets are in the solar system": "There are eight planets in the solar system: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune."
+};
+
+// Get bot response using pattern matching
+const getBotResponse = (userInput) => {
+    // Check exact matches
+    if (responses[userInput]) {
+        return responses[userInput];
+    }
+
+    // Pattern matching for flexible responses
+    if (userInput.includes("sun")) return "The Sun is a star at the center of our solar system.";
+    if (userInput.includes("mars")) return "Mars is the fourth planet from the Sun, known as the Red Planet.";
+    if (userInput.includes("black hole")) return "A black hole is a region of space where gravity is so strong that nothing, not even light, can escape.";
+
+    return null; // If no match is found
+};
+
+// Handle user input and bot response
+const handleUserInput = async () => {
+    const userInput = document.getElementById('chat-input').value.trim().toLowerCase();
+    const chatOutput = document.getElementById('chat-output');
+
+    if (!userInput) return; // Ignore empty input
+
+    // Display user input
+    chatOutput.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+    document.getElementById('chat-input').value = ''; // Clear input field
+
+    // Handle bot response
+    const botResponse = getBotResponse(userInput);
+
+    if (botResponse) {
+        chatOutput.innerHTML += `<p><strong>Bot:</strong> ${botResponse}</p>`;
+    } else if (userInput === "show me a nasa image") {
+        try {
+            const nasaData = await fetchNASAData();
+            if (nasaData) {
+                chatOutput.innerHTML += `<p><strong>Bot:</strong> Here’s NASA’s Astronomy Picture of the Day:</p>`;
+                chatOutput.innerHTML += `<img src="${nasaData.url}" alt="${nasaData.title}" style="width:100%; border-radius: 5px;">`;
+            } else {
+                chatOutput.innerHTML += `<p><strong>Bot:</strong> Sorry, I couldn't fetch the NASA image. Please try again later.</p>`;
+            }
+        } catch (error) {
+            chatOutput.innerHTML += `<p><strong>Bot:</strong> An error occurred while fetching NASA data. Please try again later.</p>`;
+        }
+    } else {
+        chatOutput.innerHTML += `<p><strong>Bot:</strong> I’m not sure about that. Try asking something else!</p>`;
+    }
+
+    // Scroll to the bottom of chat
+    chatOutput.scrollTop = chatOutput.scrollHeight;
+};
+
+// Add event listeners for button click and Enter key
+document.getElementById('send-btn').addEventListener('click', handleUserInput);
+
+document.getElementById('chat-input').addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        handleUserInput();
+    }
+});
+
+
+</script>
+</html>

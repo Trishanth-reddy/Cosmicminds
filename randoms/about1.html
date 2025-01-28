@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Minds</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+         body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: linear-gradient(0deg, rgba(43, 25, 57, 1) 0%, rgba(83, 26, 126, 1) 50%, rgba(43, 25, 57, 1) 100%);
+            font-family: Arial, sans-serif;
+            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>☄️</text></svg>") 16 0, auto;
+        }
+
+        #game-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        #gameCanvas {
+            position: absolute;
+            touch-action: none;
+        }
+
+        .hud {
+            position: fixed;
+            padding: 10px;
+            color: white;
+            font-size: 20px;
+            z-index: 1;
+        }
+
+        #score { top: 10px; left: 10px; }
+        #health { top: 40px; left: 10px; }
+        #level { top: 70px; left: 10px; }
+        
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            z-index: 100;
+        }
+
+        #controls-modal {
+            max-width: 80%;
+        }
+
+        #mobile-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            z-index: 2;
+        }
+
+        .control-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 50%;
+            margin: 0 20px;
+            color: white;
+            font-size: 24px;
+            touch-action: none;
+        }
+
+        #power-up {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            color: white;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            pointer-events: none;
+        }
+        /* Navbar Styles */
+        .navbar {
+            padding: 20px 5%;
+            background: transparent;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .navbar:hover {
+            background: rgba(43, 25, 57, 0.95);
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            transform-origin: bottom right;
+            transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+            background: #9147ff;
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .dropdown-menu {
+            backdrop-filter: blur(10px);
+            background-color: rgba(43, 25, 57, 0.9);
+            border-radius: 8px;
+        }
+
+        .dropdown-item {
+            color: #ffffff;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            color: #9147ff;
+        }
+
+        /* Page Background and Card Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .card-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: rgba(43, 25, 57, 0.9);
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .card-text {
+            color: #ccc;
+        }
+
+        .btn-primary {
+            background-color: #9147ff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #722edb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <span class="me-2">🚀</span>
+                <span>Cosmic Minds</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cources.html">Courses</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Resources
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="Planets.html">Cosmic Circuit</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Card -->
+    <div class="card-container">
+        <div class="card">
+            <div id="game-container">
+                <canvas id="gameCanvas"></canvas>
+                <div id="score" class="hud">Score: 0</div>
+                <div id="health" class="hud">Health: 100</div>
+                <div id="level" class="hud">Level: 1</div>
+                <div id="power-up" class="hud">Power-up: None</div>
+        
+                <div id="controls-modal" class="modal">
+                    <h2>Controls</h2>
+                    <p>Desktop: Arrow keys to move, Space to shoot</p>
+                    <p>Mobile: Touch buttons or drag anywhere</p>
+                    <p>Power-ups: ⭐ Speed boost, 💫 Triple shot, ❤️ Health</p>
+                    <button onclick="this.parentElement.style.display='none'">Start Game</button>
+                </div>
+        
+                <div id="mobile-controls">
+                    <button id="left-btn" class="control-btn">←</button>
+                    <button id="shoot-btn" class="control-btn">🔥</button>
+                    <button id="right-btn" class="control-btn">→</button>
+                </div>
+        
+                <div id="game-over" class="modal" style="display: none;">
+                    <h1>Game Over</h1>
+                    <p>Final Score: <span id="final-score">0</span></p>
+                    <p>Level Reached: <span id="final-level">1</span></p>
+                    <button id="restart-btn">Play Again</button>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>

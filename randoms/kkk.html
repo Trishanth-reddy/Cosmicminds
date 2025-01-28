@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Planets of Our Solar System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Cosmic Purple Gradient Background */
+body {
+    background: linear-gradient(to bottom, #20053d, #4e0d6d);
+    color: #eee;
+    font-family: 'Orbitron', sans-serif; /* Example Sci-Fi Font */
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+}
+
+/* Twinkling Star-like Accents */
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 30%);
+    animation: twinkle 10s linear infinite;
+    z-index: -1;
+}
+
+@keyframes twinkle {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+/* Content fills space between header and footer */
+main {
+    flex: 1;
+}
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: #c89bf7;
+    
+}
+
+.section-title {
+    text-align: center;
+    border-bottom: 3px solid #c89bf7;
+    padding-bottom: 10px;
+    margin-bottom: 30px !important;
+}
+
+/* Header */
+.hero {
+    background: linear-gradient(to bottom, #20053d, #4e0d6d);
+    color: #eee;
+    text-shadow: 0 0 10px #c89bf7;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.navbar-nav .nav-link {
+    color: #eee !important;
+    font-weight: 600;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #c89bf7 !important;
+    text-shadow: 0 0 5px #c89bf7;
+}
+/* Cards */
+.card {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #c89bf7;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(200, 155, 247, 0.5);
+}
+
+.card-title {
+    color: #c89bf7;
+}
+
+/* Orbit Animation */
+.orbit-animation {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.sun {
+    width: 80px;
+    height: 80px;
+    background-color: #ffcc33;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.planet-orbit {
+    border: 2px dashed #c89bf7;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    animation: orbit linear infinite;
+}
+.mercury-orbit {
+    width: 250px;
+    height: 250px;
+    transform: translate(-50%, -50%);
+    animation-duration: 5s;
+}
+.venus-orbit {
+    width: 300px;
+    height: 300px;
+    transform: translate(-50%, -50%) scale(1.2); 
+    animation-duration: 8s;
+}
+
+body {
+      background: linear-gradient(0deg, rgba(43, 25, 57, 1) 0%, rgba(83, 26, 126, 1) 50%, rgba(43, 25, 57, 1) 100%);
+      font-family: 'Poppins', sans-serif;
+      color: #ffffff;
+      font-size: var(--size-font);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      
+    }
+
+    /* Full-screen background video */
+    .background-video {
+  position: fixed;  /* Change from absolute to fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the video covers the entire screen */
+  z-index: -1; /* Ensure it stays in the background */
+  margin: 0; /* Ensure no margins are applied */
+}
+
+    .cloneable {
+      padding: var(--container-padding);
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      display: flex;
+      position: relative;
+    }
+
+    .nav-wrap {
+      /* z-index: 100;
+      pointer-events: none;
+      justify-content: center;
+      align-items: flex-end;
+      display: flex;
+      position: fixed;
+      inset: 0 0 10vh; */
+      position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem 0;
+            z-index: 1000;
+    }
+
+    .nav-list {
+      /* flex-flow: row;
+      justify-content: center;
+      align-items: flex-end;
+      margin-bottom: 0;
+      padding-left: 0;
+      display: flex;
+      font-size: 1.4vw; */
+      display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 1rem;
+    }
+
+    .nav-item {
+      justify-content: center;
+      align-items: center;
+      width: 5em;
+      /* transition: width .5s cubic-bezier(.16, 1, .3, 1); */
+      display: flex;
+      position: relative;
+      
+      transition: all 0.3s ease;
+    }
+
+    .nav-item.hover {
+      width: 8em;
+    }
+
+    .nav-item.sibling-close {
+      width: 7em;
+    }
+
+    .nav-item.sibling-far {
+      width: 6em;
+    }
+
+    .nav-item__link {
+      /* z-index: 1;
+      pointer-events: auto;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      padding-left: .5em;
+      padding-right: .5em;
+      display: flex;
+      position: relative; */
+      display: flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+    }
+    .nav-item__link:focus {
+            outline: 2px solid #c89bf7;
+            outline-offset: 2px;
+        }
+        .image {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+    /* .nav-item__tooltip {
+      z-index: 0;
+      background-color: var(--color-neutral-100);
+      opacity: 0;
+      white-space: nowrap;
+      border-radius: .25em;
+      padding: .4em .5em;
+      font-size: 1em;
+      transition: transform .5s cubic-bezier(.16, 1, .3, 1), opacity .5s cubic-bezier(.16, 1, .3, 1);
+      position: absolute;
+      top: 0;
+      transform: translate(0, -80%);
+      font-weight: 400;
+    } */
+    .nav-item__tooltip {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .nav-item:hover .nav-item__tooltip,
+        .nav-item:focus-within .nav-item__tooltip {
+            opacity: 1;
+        }
+
+.earth-orbit {
+    width: 350px;
+    height: 350px;
+    transform: translate(-50%, -50%) scale(1.4);
+    animation-duration: 10s;
+}
+
+.mars-orbit {
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%, -50%) scale(1.6);
+    animation-duration: 13s;
+}
+
+.jupiter-orbit {
+    width: 450px;
+    height: 450px;
+    transform: translate(-50%, -50%) scale(1.8);
+    animation-duration: 18s;
+}
+
+.saturn-orbit {
+    width: 500px;
+    height: 500px;
+    transform: translate(-50%, -50%) scale(2);
+    animation-duration: 22s;
+}
+
+.uranus-orbit {
+    width: 550px;
+    height: 550px;
+    transform: translate(-50%, -50%) scale(2.2);
+    animation-duration: 28s;
+}
+
+.neptune-orbit {
+    width: 600px;
+    height: 600px;
+    transform: translate(-50%, -50%) scale(2.4);
+    animation-duration: 35s;
+}
+
+.planet {
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.mercury {
+    width: 30px;
+    height: 30px;
+    background-color: #b9b9b9;
+}
+.venus {
+    width: 35px; 
+    height: 35px;
+    background-color: #e7cd9f; 
+}
+
+.earth {
+    width: 37px; 
+    height: 37px; 
+    background-color: #4a77b8;
+}
+
+.mars {
+    width: 33px;
+    height: 33px;
+    background-color: #d95d39; 
+}
+
+.jupiter {
+    width: 50px; 
+    height: 50px; 
+    background-color: #d8ca9d;
+}
+
+.saturn {
+    width: 47px;
+    height: 47px;
+    background-color: #f5e9c8; 
+}
+
+.uranus {
+    width: 40px;
+    height: 40px;
+    background-color: #bfe4e0; 
+}
+
+.neptune {
+    width: 40px;
+    height: 40px;
+    background-color: #4774aa; 
+}
+@keyframes orbit {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+.planet-image {
+    border: 2px solid #c89bf7;
+    box-shadow: 0 0 15px #c89bf7; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.planet-image:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 0 25px #c89bf7; 
+}
+
+/* Footer */
+footer {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #eee;
+}
+main {
+            margin-top: 100px;
+            padding: 2rem;
+        }
+
+        /* Skip to main content link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #c89bf7;
+            color: #000;
+            padding: 8px;
+            z-index: 1001;
+            transition: top 0.3s ease;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Improved focus styles */
+        *:focus {
+            outline: 2px solid #c89bf7;
+            outline-offset: 2px;
+        }
+
+        /* High contrast mode support */
+        @media (forced-colors: active) {
+            .nav-item__link:focus {
+                outline: 2px solid CanvasText;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="container-fluid p-0">
+        <header class="hero text-center py-5">
+            <h1 class="display-2">Our Solar System</h1>
+            <p class="lead">Explore the Wonders of the Planets</p> -->
+        </header>
+
+        <!-- ------- Osmo [https://osmo.supply/] ------- -->
+  <section class="cloneable">
+    <div class="nav-wrap">
+      <nav class="nav-bar fixed-top">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="https://en.wikipedia.org/wiki/Mercury_(planet)" target="_blank" class="nav-item__link">
+              <img src="images/mercury-Photoroom.png" loading="eager" alt="Mercury Icon" class="image">
+            </a>
+            <div class="nav-item__tooltip">
+              <div>Mercury</div>
+            </div>
+          </li>
+          <li class="nav-item">
+
+
+
+
+            <a href="https://en.wikipedia.org/wiki/Venus" target="_blank" class="nav-item__link">
+              <img src="images/file (8).png" loading="eager" alt="Venus Icon" class="image">
+            </a>
+            <div class="nav-item__tooltip">
+              <div>Venus</div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" class="nav-item__link">
+              <img src="images/Earth_bg.png" loading="eager" alt="Earth Icon" class="image">
+            </a>
+            <div class="nav-item__tooltip">
+              <div>Earth</div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="https://en.wikipedia.org/wiki/Mars" target="_blank" class="nav-item__link">
+              <img src="images/mars.png" loading="eager" alt="Mars Icon" class="image">
+            </a>
+            <div class="nav-item__tooltip">
+              <div>Mars</div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="https://en.wikipedia.org/wiki/Jupiter" target="_blank" class="nav-item__link">
+              <img src="images/jupiter.png" loading="eager" alt="Jupiter Icon" class="image">
+            </a>
+            <div class="nav-item__tooltip">
+              <div>Jupiter</div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="https://en.wikipedia.org/wiki/Saturn" target="_blank" class="nav-item__link">
+              <img src="images/licensed-image-removebg-preview.png" loading="eager" alt="Saturn Icon" class="image">
+            </a>
+            <div class="nav-item__tooltip">
+              <div>Saturn</div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="https://en.wikipedia.org/wiki/Uranus" target="_blank" class="nav-item__link">
+              <img src="images/uranus-removebg-preview.png" loading="eager" alt="Uranus Icon" class="image">
+            </a>
+            <div class="nav-item__tooltip">
+              <div>Uranus</div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="https://en.wikipedia.org/wiki/Neptune" target="_blank" class="nav-item__link">
+              <img src="images/neptune-removebg-preview.png" loading="eager" alt="Neptune Icon" class="image">
+            </a>
+            <div class="nav-item__tooltip">
+              <div>Neptune</div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="https://en.wikipedia.org/wiki/Sun" target="_blank" class="nav-item__link">
+              <img src="images/sun.png" loading="eager" alt="Sun Icon" class="image">
+            </a>
+            <div class="nav-item__tooltip">
+              <div>Sun</div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+        <main class="py-5">
+            <section id="planet-content" class="container mb-5">
+                </section>
+        </main>
+
+        <footer class="text-center py-3">
+            <p>&copy; <span id="current-year"></span> [Your Name] - Exploring the Wonders of the Solar System</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        // Function to dynamically update the current year in the footer
+function updateCurrentYear() {
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+}
+
+// Data for all planets
+const planetsData = {
+    mercury: {
+        name: "Mercury",
+        diameter: "4,880 km (3,032 miles)",
+        distance: "57.9 million km (36 million miles)",
+        dayLength: "59 Earth days",
+        overview: "Mercury, the smallest and innermost planet in our Solar System, is a world of extremes. It zips around the Sun faster than any other planet, completing an orbit in just 88 Earth days. Its surface, heavily cratered and resembling that of the Moon, bears witness to billions of years of bombardment by asteroids and comets.",
+        orbit: "Mercury's orbit is the most eccentric (elliptical) of all the planets in our Solar System. This means its distance from the Sun varies significantly throughout its year. Interestingly, Mercury rotates very slowly on its axis. One day-night cycle on Mercury takes about 59 Earth days, while a year (one orbit around the Sun) takes only 88 Earth days! Due to its unique rotation and orbit, the Sun would appear to rise, set briefly, and then rise again from some parts of Mercury's surface. The same happens in reverse at sunset.",
+        significance: "Mercury plays a vital role in our understanding of planetary formation and the evolution of the Solar System. Its high density suggests a large metallic core, making up about 85% of the planet's radius. Studying Mercury helps scientists answer questions about the formation of the early Solar System, the composition and structure of terrestrial planets, the effects of solar radiation and space weathering on planetary surfaces, and the geological history of planets with thin or no atmospheres.",
+        image: "mercury.png",
+        orbitClass: "mercury-orbit",
+        planetClass: "mercury"
+    },
+    venus: {
+        name: "Venus",
+        diameter: "12,104 km (7,521 miles)",
+        distance: "108.2 million km (67.2 million miles)",
+        dayLength: "243 Earth days",
+        overview: "Venus, the second planet from the Sun, is often called Earth's 'sister planet' due to their similar size and mass. However, Venus is an incredibly hostile world with a thick, toxic atmosphere made up mostly of carbon dioxide and clouds of sulfuric acid. This dense atmosphere traps heat, creating a runaway greenhouse effect that makes Venus the hottest planet in our Solar System.",
+        orbit: "Venus has a nearly circular orbit, the least eccentric of all the planets. It rotates very slowly in a retrograde direction (opposite to the direction of most planets), meaning the Sun rises in the west and sets in the east on Venus. A Venusian day (one rotation) is longer than a Venusian year (one orbit around the Sun).",
+        significance: "Venus is crucial for understanding the greenhouse effect and its potential consequences. Studying Venus helps scientists model the climate of other planets, including Earth, and provides insights into the evolution of planetary atmospheres. Venus also offers clues about volcanic activity and the internal structure of terrestrial planets.",
+        image: "venus.png",
+        orbitClass: "venus-orbit",
+        planetClass: "venus"
+    },
+    earth: {
+        name: "Earth",
+        diameter: "12,742 km (7,918 miles)",
+        distance: "149.6 million km (93 million miles)",
+        dayLength: "24 hours",
+        overview: "Earth, the third planet from the Sun, is the only known world to harbor life. It has a dynamic and complex system of interacting physical, chemical, and biological processes. With liquid water on its surface, a diverse range of ecosystems, and a protective atmosphere, Earth is a unique and vibrant planet.",
+        orbit: "Earth's orbit around the Sun is nearly circular. The planet's axial tilt of 23.5 degrees causes the seasons. Earth has one natural satellite, the Moon, which plays a significant role in stabilizing Earth's axial tilt and causing tides.",
+        significance: "Earth serves as a benchmark for understanding the conditions necessary for life to arise and thrive. Studying Earth's geology, atmosphere, oceans, and biosphere provides crucial knowledge about the evolution of planets and the potential for life elsewhere in the universe. Earth is also a natural laboratory for studying plate tectonics, climate change, and the impact of human activities on a planetary scale.",
+        image: "earth.png",
+        orbitClass: "earth-orbit",
+        planetClass: "earth"
+    },
+    mars: {
+        name: "Mars",
+        diameter: "6,779 km (4,212 miles)",
+        distance: "227.9 million km (141.6 million miles)",
+        dayLength: "24.6 hours",
+        overview: "Mars, the fourth planet from the Sun, is a cold, desert world with a thin atmosphere. It's often called the 'Red Planet' due to the iron oxide (rust) that covers much of its surface. Mars has polar ice caps, vast canyons, and the largest volcano in the Solar System, Olympus Mons.",
+        orbit: "Mars has a more elliptical orbit than Earth, leading to significant variations in temperature between its closest and farthest points from the Sun. A Martian year is about 687 Earth days long. Mars has two small moons, Phobos and Deimos.",
+        significance: "Mars is a prime target for the search for past or present life beyond Earth. Evidence suggests that Mars may have once had liquid water on its surface, a key ingredient for life. Studying Mars helps scientists understand the evolution of terrestrial planets, the potential for past habitability, and the possibilities for future human exploration and colonization.",
+        image: "mars.png",
+        orbitClass: "mars-orbit",
+        planetClass: "mars"
+    },
+    jupiter: {
+        name: "Jupiter",
+        diameter: "139,820 km (86,881 miles)",
+        distance: "778.5 million km (483.8 million miles)",
+        dayLength: "9.9 hours",
+        overview: "Jupiter, the fifth planet from the Sun, is the largest planet in our Solar System. It's a gas giant, composed mainly of hydrogen and helium. Jupiter has a thick atmosphere with colorful bands of clouds and a Great Red Spot, a giant storm that has raged for centuries.",
+        orbit: "Jupiter has a slightly elliptical orbit and takes about 12 Earth years to complete one orbit around the Sun. Despite its massive size, Jupiter rotates very quickly, with a day lasting less than 10 hours. Jupiter has at least 79 known moons, including the four large Galilean moons: Io, Europa, Ganymede, and Callisto.",
+        significance: "Jupiter plays a crucial role in the stability of the Solar System. Its immense gravity helps to deflect comets and asteroids away from the inner planets. Studying Jupiter's atmosphere, magnetic field, and moons provides insights into the formation of gas giants, the behavior of matter under extreme conditions, and the potential for life in icy moons with subsurface oceans.",
+        image: "jupiter.png",
+        orbitClass: "jupiter-orbit",
+        planetClass: "jupiter"
+    },
+    saturn: {
+        name: "Saturn",
+        diameter: "116,460 km (72,367 miles)",
+        distance: "1.429 billion km (887.9 million miles)",
+        dayLength: "10.7 hours",
+        overview: "Saturn, the sixth planet from the Sun, is known for its spectacular ring system. Like Jupiter, it's a gas giant composed mainly of hydrogen and helium. Saturn's rings are made up of ice particles, rocky debris, and dust.",
+        orbit: "Saturn's orbit is more elliptical than Jupiter's, and it takes about 29 Earth years to complete one orbit around the Sun. Saturn has a rapid rotation, with a day lasting just over 10 hours. It has at least 82 known moons, including Titan, the second-largest moon in the Solar System and the only one with a dense atmosphere.",
+        significance: "Saturn's rings provide a unique laboratory for studying the dynamics of particles in a gravitational field. Studying Saturn's atmosphere, magnetic field, and moons helps scientists understand the formation and evolution of planetary systems, the behavior of ring systems, and the potential for life on moons with subsurface oceans and organic molecules, like Titan.",
+        image: "saturn.png",
+        orbitClass: "saturn-orbit",
+        planetClass: "saturn"
+    },
+    uranus: {
+        name: "Uranus",
+        diameter: "50,724 km (31,518 miles)",
+        distance: "2.871 billion km (1.784 billion miles)",
+        dayLength: "17.2 hours",
+        overview: "Uranus, the seventh planet from the Sun, is an ice giant with a blue-green color due to the methane in its atmosphere. It's unique in that it rotates on its side, with its axis tilted almost 98 degrees from its orbital plane.",
+        orbit: "Uranus has a relatively circular orbit and takes about 84 Earth years to complete one orbit around the Sun. Its extreme axial tilt causes unusual seasons, with each pole experiencing 42 years of continuous daylight followed by 42 years of darkness. Uranus has 27 known moons and a faint ring system.",
+        significance: "Uranus, along with Neptune, provides insights into the formation and evolution of ice giants, a type of planet common in other planetary systems but not present in the inner Solar System. Studying Uranus's atmosphere, magnetic field, and moons helps scientists understand the behavior of planets with extreme axial tilts and the composition of ice giants.",
+        image: "uranus.png",
+        orbitClass: "uranus-orbit",
+        planetClass: "uranus"
+    },
+    neptune: {
+        name: "Neptune",
+        diameter: "49,244 km (30,599 miles)",
+        distance: "4.498 billion km (2.795 billion miles)",
+        dayLength: "16.1 hours",
+        overview: "Neptune, the eighth and farthest planet from the Sun, is another ice giant similar in composition to Uranus. It has a vibrant blue color due to methane in its atmosphere and the strongest winds of any planet in the Solar System.",
+        orbit: "Neptune has a nearly circular orbit and takes about 165 Earth years to complete one orbit around the Sun. It has a relatively rapid rotation, with a day lasting about 16 hours. Neptune has 14 known moons, the largest of which is Triton, and a faint ring system.",
+        significance: "Neptune is important for understanding the outer reaches of the Solar System and the formation of ice giants. Studying its atmosphere, magnetic field, and moons, particularly Triton, which is likely a captured Kuiper Belt object, provides insights into the early Solar System and the dynamics of icy bodies.",
+        image: "neptune.png",
+        orbitClass: "neptune-orbit",
+        planetClass: "neptune"
+    }
+};
+
+// Function to create planet content HTML
+function createPlanetContent(planetData) {
+    return `
+        <h2 class="section-title mb-4">${planetData.name}</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="${planetData.image}" alt="${planetData.name}" class="img-fluid planet-image"> 
+            </div>
+            <div class="col-md-6">
+                <p>${planetData.overview}</p>
+            </div>
+        </div>
+        <section id="characteristics" class="container mb-5">
+            <h3 class="section-title mb-4">Key Characteristics</h3>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Diameter</h5>
+                            <p class="card-text">${planetData.diameter}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Distance from Sun</h5>
+                            <p class="card-text">${planetData.distance}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Day Length</h5>
+                            <p class="card-text">${planetData.dayLength}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="orbit" class="container mb-5">
+            <h3 class="section-title mb-4">Orbit and Rotation</h3>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p>${planetData.orbit}</p>
+                </div>
+                <div class="col-md-6">
+                    <div id="orbit-animation" class="orbit-animation">
+                        <div class="sun"></div>
+                        <div class="planet-orbit ${planetData.orbitClass}">
+                            <div class="planet ${planetData.planetClass}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="significance" class="container mb-5">
+            <h3 class="section-title mb-4">Significance in the Solar System</h3>
+            <div class="row">
+                <div class="col-12">
+                    <p>${planetData.significance}</p>
+                </div>
+            </div>
+        </section>
+    `;
+}
+
+// Function to load planet content
+function loadPlanetContent(planet) {
+    const planetContentSection = document.getElementById('planet-content');
+    const planetData = planetsData[planet];
+
+    if (planetData) {
+        planetContentSection.innerHTML = createPlanetContent(planetData);
+    } else {
+        planetContentSection.innerHTML = "<p>Select a planet to learn more!</p>";
+    }
+}
+
+// Event listener for navigation links
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            // Update active link
+            navLinks.forEach(navLink => navLink.classList.remove('active'));
+            this.classList.add('active');
+
+            // Load content for selected planet
+            loadPlanetContent(this.dataset.planet);
+        });
+    });
+
+    // Load default content (Mercury)
+    loadPlanetContent('mercury');
+
+    // Update footer year
+    updateCurrentYear();
+});
+document.addEventListener("DOMContentLoaded", () => {
+      // Select all .nav-item elements
+      const navItems = document.querySelectorAll('.nav-item');
+      
+      // Helper function to add/remove a class to a sibling at a given offset
+      const toggleSiblingClass = (items, index, offset, className, add) => {
+        const sibling = items[index + offset];
+        if (sibling) {
+          sibling.classList.toggle(className, add);
+        }
+      };
+
+      // Event listeners to toggle classes on hover
+      navItems.forEach((item, index) => {
+        item.addEventListener('mouseenter', () => {
+          item.classList.add('hover'); // Add .hover to current item
+          // Toggle classes for siblings
+          toggleSiblingClass(navItems, index, -1, 'sibling-close', true); // Previous sibling
+          toggleSiblingClass(navItems, index, 1, 'sibling-close', true);  // Next sibling
+          toggleSiblingClass(navItems, index, -2, 'sibling-far', true);   // Previous-previous sibling
+          toggleSiblingClass(navItems, index, 2, 'sibling-far', true);    // Next-next sibling
+        });
+
+        item.addEventListener('mouseleave', () => {
+          item.classList.remove('hover'); // Remove .hover from current item
+          // Toggle classes for siblings
+          toggleSiblingClass(navItems, index, -1, 'sibling-close', false); // Previous sibling
+          toggleSiblingClass(navItems, index, 1, 'sibling-close', false);  // Next sibling
+          toggleSiblingClass(navItems, index, -2, 'sibling-far', false);   // Previous-previous sibling
+          toggleSiblingClass(navItems, index, 2, 'sibling-far', false);    // Next-next sibling
+        });
+      });
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+            // Handle keyboard navigation
+            const navItems = document.querySelectorAll('.nav-item__link');
+            
+            navItems.forEach(link => {
+                link.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        link.click();
+                    }
+                });
+            });
+
+            // Announce page changes to screen readers
+            const pageContainer = document.getElementById('planet-content');
+            const observer = new MutationObserver(() => {
+                const announcement = document.createElement('div');
+                announcement.setAttribute('role', 'status');
+                announcement.setAttribute('aria-live', 'polite');
+                announcement.textContent = `Loaded content for ${currentPlanet}`;
+                document.body.appendChild(announcement);
+                setTimeout(() => announcement.remove(), 1000);
+            });
+
+            observer.observe(pageContainer, { childList: true });
+        });
+
+    </script>
+</body>
+</html>

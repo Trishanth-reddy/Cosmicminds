@@ -1,0 +1,122 @@
+.navbar {
+    padding: 20px 5%;
+    background: transparent;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.navbar:hover {
+    background: rgba(43,25,57,0.95);
+}
+
+.navbar.hidden {
+    transform: translateY(-100%);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white !important;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.navbar-nav {
+    gap: 30px;
+    text-align: end;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+    padding: 0 !important;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transform-origin: bottom right;
+    transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+    background: #9147ff;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.nav-link:hover {
+    color: #9147ff !important;
+}
+
+.navbar-toggler {
+    border-color: rgba(255,255,255,0.5);
+    padding: 4px 8px;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.dropdown-menu {
+    position: absolute;
+    z-index: 1000;
+    backdrop-filter: blur(10px) saturate(99%);
+    -webkit-backdrop-filter: blur(10px) saturate(99%);
+    background-color: rgba(43, 25, 57, 0.9); /* Matches navbar theme */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle border */
+    border-radius: 8px; /* Soft corners */
+    padding: 10px 0;
+    transition: all 0.3s ease; /* Smooth transitions */
+}
+
+.dropdown-item {
+    color: #ffffff; /* White text for readability */
+    font-weight: 500;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px; /* Add a subtle rounded effect */
+}
+
+.dropdown-item:hover {
+    background-color: transparent;
+    color: #9147ff; /* Accent color on hover */
+    transform: translateX(1px); /* Slight hover effect for interactivity */
+}
+
+.dropdown-divider {
+    height: 1px;
+    margin: 8px 0;
+    background-color: rgba(255, 255, 255, 0.2); /* Subtle divider */
+    border: none;
+}
+.sign-up {
+    padding: 10px 25px;
+    background-color: #9147ff;
+    color: #ffffff !important;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-left: 30px;
+}
+
+.sign-up:hover {
+    background-color: transparent;
+    transform: translate(-3px);
+    border: 1px solid #9147ff;
+}
+

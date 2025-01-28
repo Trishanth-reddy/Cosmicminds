@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🚀</text></svg>") 16 0, auto;
+}
+a:hover {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>☄️</text></svg>") 16 0, auto;
+}
+button:hover{
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>☄️</text></svg>") 16 0, auto;
+
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(0deg, rgba(43, 25, 57, 1) 0%, rgba(83, 26, 126, 1) 50%, rgba(43, 25, 57, 1) 100%);
+    color: white;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    animation: bounce 2s infinite;
+    z-index: 100;
+}
+
+.scroll-indicator i {
+    font-size: 2rem;
+    color: #9147ff;
+}
+
+.scroll-text {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #fff;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px;
+    background: radial-gradient(circle at center, rgba(145, 71, 255, 0.1) 0%, transparent 70%);
+}
+
+.hero-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+}
+
+.hero-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-content h1 {
+    font-size: 5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #9147ff 0%, #ff4b82 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    color: #e5e5e5;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.features-section {
+    padding: 80px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+}
+
+.features-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card1 {
+    backdrop-filter: blur(13px) saturate(99%);
+    background-color: rgba(17, 25, 40, 0.52);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+    cursor: pointer;
+}
+
+.card1:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card1 h5 {
+    font-size: 1.2rem;
+    margin: 15px 0;
+    color: white;
+}
+
+.card1 p {
+    font-size: 0.95rem;
+    color: #e5e5e5;
+}
+
+.card1 i {
+    font-size: 3rem;
+    color: #9147ff;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.card1:hover i {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .navbar-collapse {
+        background: rgba(45, 27, 105, 0.95);
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+}
+    .card1 {
+        margin-bottom: 20px;
+    }

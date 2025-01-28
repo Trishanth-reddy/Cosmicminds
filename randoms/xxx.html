@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Planets of Our Solar System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="tyles.css">
+    <style>
+   /* <style> */
+/* Cosmic Purple Gradient Background */
+body {
+    background: linear-gradient(to bottom, #20053d, #4e0d6d);
+    color: #eee;
+    font-family: 'Orbitron', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Twinkling Star-like Accents */
+.hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #20053d, #4e0d6d);
+    color: #eee;
+    text-shadow: 0 0 10px #c89bf7;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 30%);
+    animation: twinkle 10s linear infinite;
+    z-index: -1;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: #c89bf7;
+}
+
+.section-title {
+    text-align: center;
+    border-bottom: 3px solid #c89bf7;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+/* Main Content */
+main {
+    flex: 1;
+}
+
+/* Cards */
+.card {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #c89bf7;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(200, 155, 247, 0.5);
+}
+
+.card-title {
+    color: #c89bf7;
+}
+
+/* Orbit Animation */
+.orbit-animation {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.sun {
+    width: 80px;
+    height: 80px;
+    background-color: #ffcc33;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.planet-orbit {
+    border: 2px dashed #c89bf7;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    animation: orbit linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+.mercury-orbit { width: 170px; height: 170px; animation-duration: 5s; }
+.venus-orbit { width: 203px; height: 203px; animation-duration: 8s; }
+.earth-orbit { width: 230px; height: 230px; animation-duration: 10s; }
+.mars-orbit { width: 258px; height: 258px; animation-duration: 13s; }
+.jupiter-orbit { width: 300px; height: 300px; animation-duration: 18s; }
+.saturn-orbit { width: 330px; height: 330px; animation-duration: 22s; }
+.uranus-orbit { width: 345px; height: 345px; animation-duration: 28s; }
+.neptune-orbit { width: 360px; height: 360px; animation-duration: 35s; }
+
+.planet {
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.mercury { width: 30px; height: 30px; background-color: #b9b9b9; }
+.venus { width: 35px; height: 35px; background-color: #e7cd9f; }
+.earth { width: 37px; height: 37px; background-color: #4a77b8; }
+.mars { width: 33px; height: 33px; background-color: #d95d39; }
+.jupiter { width: 50px; height: 50px; background-color: #d8ca9d; }
+.saturn { width: 47px; height: 47px; background-color: #f5e9c8; }
+.uranus { width: 40px; height: 40px; background-color: #bfe4e0; }
+.neptune { width: 40px; height: 40px; background-color: #4774aa; }
+
+@keyframes orbit {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Planet Images */
+.planet-image {
+    border: 2px solid #c89bf7;
+    box-shadow: 0 0 15px #c89bf7;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.planet-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #c89bf7;
+}
+
+/* Footer */
+footer {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #eee;
+}
+</style>
+
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero text-center py-5">
+        <h1 class="display-2">Our Solar System</h1>
+        <p class="lead">Explore the Wonders of the Planets</p>
+    </header>
+
+    <!-- First Navbar (Not Fixed) -->
+    <nav class="navbar2 navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand2 d-flex align-items-center" href="#">
+                <span class="me-2">🚀</span>
+                <span>Cosmic Minds</span>
+            </a>
+            <button class="navbar-toggler2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon2"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav2 ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item2">
+                        <a class="nav-link2 active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item2">
+                        <a class="nav-link2" href="home.html">About</a>
+                    </li>
+                    <li class="nav-item2">
+                        <a class="nav-link2" href="courses.html">Courses</a>
+                    </li>
+                    <li class="nav-item2 dropdown">
+                        <a class="nav-link2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Resources
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="Planets.html">Cosmic Circuit</a></li>
+                            <li><a class="dropdown-item" href="#">Another Action</a></li>
+                            <li><a class="dropdown-item" href="#">Something Else Here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item2">
+                        <a class="nav-link2" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Second Navbar (Fixed Bottom) -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-bottom-navbar">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPlanetNav" 
+                    aria-controls="navbarPlanetNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarPlanetNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-planet="mercury">Mercury</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-planet="venus">Venus</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-planet="earth">Earth</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-planet="mars">Mars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-planet="jupiter">Jupiter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-planet="saturn">Saturn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-planet="uranus">Uranus</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-planet="neptune">Neptune</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="py-5">
+        <section id="planet-content" class="container mb-5">
+            <!-- Planet content goes here -->
+        </section>
+    </main>
+</body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        // Function to dynamically update the current year in the footer
+        function updateCurrentYear() {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        }
+    
+        // Data for all planets
+        const planetsData = {
+            mercury: {
+                name: "Mercury",
+                diameter: "4,880 km (3,032 miles)",
+                distance: "57.9 million km (36 million miles)",
+                dayLength: "59 Earth days",
+                overview: "Mercury, the smallest and innermost planet in our Solar System, is a world of extremes. It zips around the Sun faster than any other planet, completing an orbit in just 88 Earth days. Its surface, heavily cratered and resembling that of the Moon, bears witness to billions of years of bombardment by asteroids and comets.",
+                orbit: "Mercury's orbit is the most eccentric (elliptical) of all the planets in our Solar System. Its distance from the Sun varies significantly throughout its year.",
+                significance: "Mercury helps scientists understand planetary formation and evolution in the Solar System.",
+                image: "path/to/mercury.jpg",
+                orbitClass: "mercury-orbit",
+                planetClass: "mercury"
+            },
+            // Add other planets as necessary (Venus, Earth, etc.)
+            venus: {
+                name: "Venus",
+                diameter: "12,104 km (7,521 miles)",
+                distance: "108.2 million km (67.2 million miles)",
+                dayLength: "243 Earth days",
+                overview: "Venus is often called Earth's 'sister planet' due to their similar size and mass. However, Venus is incredibly hostile with a thick, toxic atmosphere.",
+                orbit: "Venus rotates slowly in a retrograde direction, meaning the Sun rises in the west and sets in the east.",
+                significance: "Venus is crucial for understanding greenhouse effects and planetary atmospheres.",
+                image: "path/to/venus.jpg",
+                orbitClass: "venus-orbit",
+                planetClass: "venus"
+            },
+            // Additional planets data...
+        };
+    
+        // Function to create HTML for a planet's content
+        function createPlanetContent(planetData) {
+            return `
+                <h2 class="section-title mb-4">${planetData.name}</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="${planetData.image || 'placeholder.jpg'}" alt="${planetData.name}" class="img-fluid planet-image" loading="lazy"> 
+                    </div>
+                    <div class="col-md-6">
+                        <p>${planetData.overview}</p>
+                    </div>
+                </div>
+                <section id="characteristics" class="container mb-5">
+                    <h3 class="section-title mb-4">Key Characteristics</h3>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Diameter</h5>
+                                    <p class="card-text text-white">${planetData.diameter}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Distance from Sun</h5>
+                                    <p class="card-text text-white">${planetData.distance}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Day Length</h5>
+                                    <p class="card-text text-white">${planetData.dayLength}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="orbit" class="container mb-3">
+                    <h3 class="section-title mb-4">Orbit and Rotation</h3>
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <p>${planetData.orbit}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="orbit-animation" class="orbit-animation">
+                                <div class="sun"></div>
+                                <div class="planet-orbit ${planetData.orbitClass}">
+                                    <div class="planet ${planetData.planetClass}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="significance" class="container mb-5">
+                    <h3 class="section-title mb-4">Significance in the Solar System</h3>
+                    <p>${planetData.significance}</p>
+                </section>
+            `;
+        }
+    
+        // Function to load planet content
+        function loadPlanetContent(planet) {
+            const planetContentSection = document.getElementById('planet-content');
+            const planetData = planetsData[planet];
+    
+            if (planetData) {
+                planetContentSection.innerHTML = createPlanetContent(planetData);
+            } else {
+                planetContentSection.innerHTML = "<p>Select a planet to learn more!</p>";
+            }
+        }
+    
+        // Function to handle navbar scroll behavior
+        function handleNavbarScroll() {
+            let lastScroll = 0;
+            const navbar = document.querySelector('.navbar2');
+            const body = document.body;
+    
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                if (currentScroll > lastScroll && currentScroll > 80) {
+                    navbar.classList.add('hidden');
+                    body.style.paddingTop = "0";
+                } else {
+                    navbar.classList.remove('hidden');
+                    body.style.paddingTop = "56px";
+                }
+                lastScroll = currentScroll;
+            });
+        }
+    
+        // Function to initialize smooth scrolling
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+    
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    navLinks.forEach(navLink => navLink.classList.remove('active'));
+                    this.classList.add('active');
+                    loadPlanetContent(this.dataset.planet);
+                });
+            });
+    
+            // Load default planet content (e.g., Mercury)
+            loadPlanetContent('mercury');
+            updateCurrentYear();
+            handleNavbarScroll();
+            initSmoothScroll();
+        });
+    </script>
+    
+</body>
+</html>
