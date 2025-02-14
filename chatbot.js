@@ -1,5 +1,33 @@
 // Replace with your actual OpenAI API key
 const API_KEY = "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";
+async function sendMessage() {
+    const userInput = document.getElementById("userInput").value;
+    if (!userInput) return;
+
+    // Show user message
+    const chatbox = document.getElementById("chatbox");
+    chatbox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+
+    // Send request to backend
+    try {
+        const response = await fetch("http://localhost:5000/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt: userInput })
+        });
+
+        const data = await response.json();
+
+        // Show bot response
+        chatbox.innerHTML += `<p><strong>Bot:</strong> ${data.reply}</p>`;
+
+    } catch (error) {
+        console.error("Error:", error);
+        chatbox.innerHTML += `<p><strong>Bot:</strong> Error getting response.</p>`;
+    }
+
+    document.getElementById("userInput").value = "";
+}
 
 // Function to fetch GPT API response
 const fetchGPTResponse = async (userInput) => {
