@@ -4,7 +4,6 @@ from flask_cors import CORS
 import requests
 import random
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
-
 app = Flask(__name__)
 CORS(app)  # Allow frontend to communicate with backend
 
